@@ -34,7 +34,7 @@ public class DogController {
    * @return The dog with the specified ID.
    */
   @GetMapping("/dogs/{id}")
-  public Dog getDogById(@PathVariable long id) {
+  public Dogs getDogById(@PathVariable long id) {
     return dogService.getDogById(id);
   }
 
@@ -67,7 +67,7 @@ public class DogController {
    * @return The added dog.
    */
   @PostMapping("/dogs")
-  public Object addDog(@RequestBody Dog dog) {
+  public Object addDog(@RequestBody Dogs dog) {
     return dogService.addDog(dog);
   }
 
@@ -79,7 +79,7 @@ public class DogController {
    * @return The updated dog.
    */
   @PutMapping("/dogs/{id}")
-  public Dog updateDog(@PathVariable Long id, @RequestBody Dog dog) {
+  public Dogs updateDog(@PathVariable Long id, @RequestBody Dogs dog) {
     dogService.updateDog(id, dog);
     return dogService.getDogById(id);
   }
@@ -103,7 +103,7 @@ public class DogController {
    * @return Confirmation message or file data.
    */
   @PostMapping("/dogs/writeFile")
-  public Object writeJson(@RequestBody Dog dog) {
+  public Object writeJson(@RequestBody Dogs dog) {
     return dogService.writeJson(dog);
   }
 
