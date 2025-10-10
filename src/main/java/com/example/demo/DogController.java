@@ -116,4 +116,23 @@ public class DogController {
   public Object readJson() {
     return dogService.readJson();
   }
+
+  /**
+   * Endpoint to get dogs by name
+   *
+   * @param name The name of the dog to search for
+   * @return List of students with the specified name
+   */
+  @GetMapping("/dogs/search")
+  public Object getDogsByName (@RequestParam String name) {
+    if (name != null){
+      return dogService.getDogsByName(name);
+    }
+    else{
+      return dogService.getAllDogs();
+    }
+
+  }
+
+  
 }

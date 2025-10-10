@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.io.IOException;
+
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class DogService {
   public Object getDogsByName(String name) {
     return dogRepository.getDogsByName(name);
   }
+  
 
   /**
    * Method to get dogs by breed.
@@ -126,5 +128,7 @@ public class DogService {
       return null;
     }
   }
+
+
 }
     
