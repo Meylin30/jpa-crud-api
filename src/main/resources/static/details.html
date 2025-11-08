@@ -61,7 +61,10 @@
         const dog = await res.json();
 
         document.getElementById('dog-name').textContent = dog.name;
-        document.getElementById('dog-title').textContent = `${dog.name} the ${dog.breed}`;
+        document.getElementById('dog-title').innerHTML = `
+          <span class="dog-name">${dog.name}</span>
+          <span class="dog-breed">${dog.breed}</span>
+        `;
         document.getElementById('dog-description').textContent =
           dog.description || 'No description available.';
 

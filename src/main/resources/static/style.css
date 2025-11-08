@@ -385,7 +385,7 @@ header .fas fa-bars{
 .dog-avatar {
     color: #ff69b4; 
     background: #ffe6f0;
-    border-radius: 50%;
+    border-radius: 100%;
     padding: 1rem;
     display: inline-block;
     margin-bottom: 1rem;
@@ -438,10 +438,24 @@ header .fas fa-bars{
   .dog-avatar {
       color: #ff69b4; /* pink */
       background: #ffe6f0; /* light background */
-      border-radius: 50%;
+      border-radius: 100%;
       padding: 2rem;
       display: inline-block;
       margin-bottom: 1rem;
       font-size: 15rem;
       text-align: center;
+    }
+
+ #dog-title .dog-name {
+      display: block;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+
+    #dog-title .dog-breed {
+      display: block;
+      font-size: 3rem;
+      font-style: italic;
+      color: #555;
+      margin-top: 0.2rem;
     }
