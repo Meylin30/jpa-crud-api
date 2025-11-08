@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FurFriends - Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Meet Our <span>FurFriend.</span></a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="details.html">Details</a>
+      <a href="about.html">About</a>
+      <a href="form.html">Form</a>
+    </nav>
+  </header>
+
+  <section class="about" id="about">
+    <h1 class="heading" id="dog-name">Loading<span>...</span></h1>
+    <div class="row">
+      <div class="image">
+        <img id="dog-image" src="" alt="Dog photo">
+      </div>
+      <div class="content">
+        <h3 id="dog-title">Fetching details...</h3>
+        <p id="dog-description"></p>
+        <a href="form.html" class="btn">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const apiBase = '/dogs';
+    const params = new URLSearchParams(window.location.search);
+    const dogId = params.get('id');
+
+    async function loadDog() {
+      if (!dogId) {
+        document.getElementById('dog-name').textContent = 'Dog not found';
+        return;
+      }
+      const res = await fetch(`${apiBase}/${dogId}`);
+      if (!res.ok) {
+        document.getElementById('dog-name').textContent = 'Error loading dog';
+        return;
+      }
+      const dog = await res.json();
+      document.getElementById('dog-name').textContent = dog.name;
+      document.getElementById('dog-title').textContent = `${dog.name} the ${dog.breed}`;
+      document.getElementById('dog-description').textContent =
+        dog.description || 'No description available.';
+      document.getElementById('dog-image').src =
+        dog.imageUrl || 'https://place-puppy.com/400x400';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDog);
+  </script>
+</body>
+</html>
+
