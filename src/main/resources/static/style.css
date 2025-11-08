@@ -380,3 +380,68 @@ header .fas fa-bars{
   color: #333;
   margin: 0.3rem 0;
 }
+
+
+.dog-avatar {
+    color: #ff69b4; 
+    background: #ffe6f0;
+    border-radius: 50%;
+    padding: 1rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.dog-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.dog-buttons button {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #fff;
+}
+
+.dog-buttons .edit-btn {
+    background: #4caf50;
+}
+
+.dog-buttons .edit-btn:hover {
+    background: #45a049;
+}
+
+.dog-buttons .delete-btn {
+    background: #f44336;
+}
+
+.dog-buttons .delete-btn:hover {
+    background: #d32f2f;
+}
+
+@media(max-width: 500px) {
+    .dog-buttons {
+        flex-direction: column;
+    }
+    .dog-buttons button {
+        margin: 0.25rem 0;
+    }
+}
+
+
+  .dog-avatar {
+      color: #ff69b4; /* pink */
+      background: #ffe6f0; /* light background */
+      border-radius: 50%;
+      padding: 2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 15rem;
+      text-align: center;
+    }

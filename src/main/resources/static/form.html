@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FurFriends - Add a Dog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Adopt Now<span>!</span></a>
+
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="details.html">Details</a>
+      <a href="about.html">About</a>
+      <a href="form.html">Form</a>
+    </nav>
+  </header>
+
+  <section class="contact" id="contact">
+    <h1 class="heading"><span>Add a New</span> FurFriend</h1>
+    <div class="row">
+      <div class="image">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.Pf99TFitiJmF2_1C61W1bwHaEG?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Dog photo">
+      </div>
+
+      <form id="dog-form">
+        <h3>Enter Dog Info</h3>
+
+        <input type="text" id="name" placeholder="Dog Name" class="box" required>
+        <input type="text" id="breed" placeholder="Breed" class="box" required>
+        <input type="number" id="age" placeholder="Age" class="box" required>
+        <input type="text" id="imageUrl" placeholder="Image URL" class="box" required>
+        <textarea id="description" class="box" placeholder="Description" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="Add Dog" class="btn">
+        <p id="response-message" style="margin-top:1rem; font-size:1.5rem;"></p>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const apiBase = '/dogs';
+
+    document.getElementById('dog-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const dog = {
+        name: document.getElementById('name').value.trim(),
+        breed: document.getElementById('breed').value.trim(),
+        age: parseInt(document.getElementById('age').value),
+        imageUrl: document.getElementById('imageUrl').value.trim(),
+        description: document.getElementById('description').value.trim()
+      };
+
+      try {
+        const res = await fetch(apiBase, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dog)
+        });
+
+        if (res.ok) {
+          document.getElementById('response-message').textContent = 'Dog added successfully!';
+          document.getElementById('response-message').style.color = 'green';
+          document.getElementById('dog-form').reset();
+        } else {
+          document.getElementById('response-message').textContent = 'Error adding dog.';
+          document.getElementById('response-message').style.color = 'red';
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        document.getElementById('response-message').textContent = 'Network error.';
+        document.getElementById('response-message').style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -25,6 +25,8 @@ public class Dogs {
 
   private String description;
 
+
+
   public Dogs() {
   }
 

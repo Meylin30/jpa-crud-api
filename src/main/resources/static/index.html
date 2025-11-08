@@ -5,21 +5,20 @@
   <title>FurFriends.com</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
     <a href="#" class="logo">FurFriends<span>.</span></a>
-
     <nav class="navbar">
       <a href="index.html">Home</a>
       <a href="details.html">Details</a>
       <a href="about.html">About</a>
       <a href="form.html">Form</a>
     </nav>
-
     <div class="container">
       <form id="search-form">
-        <input type="search" id="search-box" placeholder="Search here...">
+        <input type="search" id="search-box" placeholder="Search by name...">
         <label for="search-box" class="fas fa-search"></label>
       </form>
     </div>
@@ -29,18 +28,37 @@
     <div class="content">
       <h3>Find your new best friend</h3>
       <span>Adopt, don't shop!</span>
-      <p>Adopt a pet today and give them a loving home. Browse our selection of adorable cats and dogs waiting for their forever family.</p>
-      <a href="form.html" class="btn">Get Started</a>
+      <p>Adopt a pet today and give them a loving home. Browse our selection of adorable dogs waiting for their forever family.</p>
+      <a href="form.html" class="btn">Add a Dog</a>
     </div>
   </section>
 
   <section class="pets" id="pets">
     <h1 class="heading">Our <span>FurFriends</span></h1>
     <div class="box-container" id="dog-list">
-   
+      <!-- Dog cards loaded here -->
     </div>
   </section>
 
-  <script src="script.js"></script>
+  <!-- Edit Dog Modal -->
+  <div id="edit-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+    <div style="background:white; padding:2rem; border-radius:1rem; width:400px;">
+      <h3>Edit Dog</h3>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <input type="text" id="edit-name" class="box" placeholder="Name" required>
+        <input type="text" id="edit-breed" class="box" placeholder="Breed" required>
+        <input type="number" id="edit-age" class="box" placeholder="Age" required>
+        <textarea id="edit-description" class="box" placeholder="Description" rows="4"></textarea>
+        <div style="margin-top:1rem; display:flex; justify-content:space-between;">
+          <button type="submit" class="btn save-btn">Save</button>
+          <button type="button" class="btn cancel-btn" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
+
+
+

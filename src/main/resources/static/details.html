@@ -5,10 +5,22 @@
   <title>FurFriends - Details</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .dog-avatar {
+      color: #ff69b4;
+      background: #ffe6f0;
+      border-radius: 50%;
+      padding: 2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 7rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <a href="#" class="logo">Meet Our <span>FurFriend.</span></a>
+    <a href="index.html" class="logo">Meet Our <span>FurFriend.</span></a>
     <nav class="navbar">
       <a href="index.html">Home</a>
       <a href="details.html">Details</a>
@@ -20,8 +32,8 @@
   <section class="about" id="about">
     <h1 class="heading" id="dog-name">Loading<span>...</span></h1>
     <div class="row">
-      <div class="image">
-        <img id="dog-image" src="" alt="Dog photo">
+      <div class="image" id="dog-avatar-container">
+        <!-- Dog icon goes here -->
       </div>
       <div class="content">
         <h3 id="dog-title">Fetching details...</h3>
@@ -41,22 +53,30 @@
         document.getElementById('dog-name').textContent = 'Dog not found';
         return;
       }
-      const res = await fetch(`${apiBase}/${dogId}`);
-      if (!res.ok) {
+
+      try {
+        const res = await fetch(`${apiBase}/${dogId}`);
+        if (!res.ok) throw new Error('Error fetching dog');
+
+        const dog = await res.json();
+
+        document.getElementById('dog-name').textContent = dog.name;
+        document.getElementById('dog-title').textContent = `${dog.name} the ${dog.breed}`;
+        document.getElementById('dog-description').textContent =
+          dog.description || 'No description available.';
+
+        // Dog icon instead of image
+        document.getElementById('dog-avatar-container').innerHTML =
+          `<i class="fas fa-dog dog-avatar"></i>`;
+      } catch (err) {
+        console.error(err);
         document.getElementById('dog-name').textContent = 'Error loading dog';
-        return;
       }
-      const dog = await res.json();
-      document.getElementById('dog-name').textContent = dog.name;
-      document.getElementById('dog-title').textContent = `${dog.name} the ${dog.breed}`;
-      document.getElementById('dog-description').textContent =
-        dog.description || 'No description available.';
-      document.getElementById('dog-image').src =
-        dog.imageUrl || 'https://place-puppy.com/400x400';
     }
 
     document.addEventListener('DOMContentLoaded', loadDog);
   </script>
 </body>
 </html>
+
 
